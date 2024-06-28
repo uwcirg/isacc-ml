@@ -5,7 +5,7 @@ from pytest import fixture
 
 @fixture
 def app():
-    from sdc_services.app import create_app
+    from ml_services.app import create_app
     return create_app(testing=True)
 
 

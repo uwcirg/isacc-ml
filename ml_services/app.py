@@ -21,7 +21,6 @@ def register_blueprints(app):
     """register all blueprints for application
     """
     app.register_blueprint(api.views.base_blueprint)
-    app.register_blueprint(api.ml_utils.blueprint)
 
 
 def configure_proxy(app):
