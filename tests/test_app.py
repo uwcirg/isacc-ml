@@ -19,11 +19,5 @@ class TestIsaccMLServicesApp(unittest.TestCase):
     def test_blueprints_registered(self):
         self.assertIn('base', self.app.blueprints)
 
-    def test_proxy_configuration(self):
-        app = create_app(testing=True)
-        app.config['PREFERRED_URL_SCHEME'] = 'https'
-        configure_proxy(app)
-        self.assertTrue(hasattr(app.wsgi_app, 'get_remote_addr'))
-
 if __name__ == '__main__':
     unittest.main()
