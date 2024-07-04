@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, current_app
-from api.ml_utils import predict_score
+from ml_services.api.ml_utils import predict_score
 
 # Create a Blueprint
 ml_blueprint = Blueprint('base', __name__, cli_group=None)
