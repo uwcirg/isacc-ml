@@ -10,7 +10,7 @@ COPY . .
 ARG VERSION_STRING
 ENV VERSION_STRING=$VERSION_STRING
 
-ENV FLASK_APP=isacc_messaging.app:create_app() \
+ENV FLASK_APP=ml_services.app:create_app() \
     PORT=8000
 
 EXPOSE "${PORT}"

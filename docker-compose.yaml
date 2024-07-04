@@ -9,4 +9,4 @@ services:
       # allow override of published port
       - ${P_PORT:-5000}:5000
     env_file:
-      - isacc_ml_services.env
+      - ml_services.env
