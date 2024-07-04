@@ -2,13 +2,13 @@ from flask import Blueprint, request, jsonify, current_app
 from ml_services.api.ml_utils import predict_score
 
 # Create a Blueprint
-ml_blueprint = Blueprint('base', __name__, cli_group=None)
+base_blueprint = Blueprint('base', __name__, cli_group=None)
 
-@ml_blueprint.route('/')
+@base_blueprint.route('/')
 def root():
     return {'ok': True}
 
-@ml_blueprint.route('/predict_score', methods=['POST'])
+@base_blueprint.route('/predict_score', methods=['POST'])
 def predict_score_route():
     print("Predicting the score")
     data = request.get_json()
