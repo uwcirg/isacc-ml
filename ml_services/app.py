@@ -1,14 +1,13 @@
 from flask import Flask
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-from ml_services import api
-
+from ml_services.api import views
 
 def create_app(testing=False, cli=False):
     """Application factory, used to create application
     """
-    app = Flask('isacc_ml_services')
-    app.config.from_object('isacc_ml_services.config')
+    app = Flask('ml_services')
+    app.config.from_object('ml_services.config')
     app.config['TESTING'] = testing
 
     register_blueprints(app)
@@ -20,7 +19,7 @@ def create_app(testing=False, cli=False):
 def register_blueprints(app):
     """register all blueprints for application
     """
-    app.register_blueprint(api.views.base_blueprint)
+    app.register_blueprint(views.base_blueprint)
 
 
 def configure_proxy(app):
