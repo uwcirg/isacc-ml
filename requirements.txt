@@ -4,24 +4,40 @@
 #
 #    pip-compile --output-file=requirements.txt
 #
-idna==3.2                 # via requests
+authlib==0.14.3           # via isacc_messaging (setup.py)
 certifi==2021.5.30        # via requests
-charset-normalizer==2.0.6 # via requests
+cffi==1.14.1              # via cryptography
+charset-normalizer==2.0.6  # via requests
 click==8.0.1              # via flask
-requests-cache==0.6.4     # via isacc-ml
-importlib-metadata==4.8.1 # via click
+cryptography==3.3.2         # via authlib, python-jose
+ecdsa==0.14.1             # via python-jose
+fhirclient==4.1.0         # via isacc_messaging (setup.py)
+flask==1.1.2              # via isacc_messaging (setup.py)
+gunicorn==20.1.0          # via isacc_messaging (setup.py)
+idna==3.2                 # via requests
+importlib-metadata==4.8.1  # via click
 itsdangerous==2.0.1       # via flask
 jinja2==3.0.1             # via flask
 markupsafe==2.0.1         # via jinja2
+pyasn1==0.4.8             # via python-jose, rsa
+pycparser==2.20           # via cffi
+python-jose[cryptography]==3.2.0  # via isacc_messaging (setup.py)
+python-json-logger==0.1.11  # via isacc_messaging (setup.py)
+redis==3.5.3              # via isacc_messaging (setup.py)
+requests-cache==0.6.4     # via isacc_messaging (setup.py)
+requests==2.26.0          # via requests-cache, isacc_messaging (setup.py)
+rsa==4.7                  # via python-jose
+six==1.16.0               # via ecdsa, flask-cors, url-normalize
+typing-extensions==3.10.0.2  # via importlib-metadata
 url-normalize==1.4.3      # via requests-cache
-flask-jwt-extended==3.24.1# via isacc-ml
-werkzeug==2.0.1           # via flask, flask-jwt-extended
-flask==1.1.2
-requests==2.26.0
-urllib3==1.26.7
+urllib3==1.26.7           # via requests, requests-cache
+werkzeug==2.0.1           # via flask
+zipp==3.5.0               # via importlib-metadata
+twilio==7.14.1
 fhirclient==4.1.0
 torch==1.13.0
 transformers==4.24.0
 scipy==1.7.3
 numpy==1.21.5
 pandas==1.3.5
+git+https://github.com/uwcirg/fhir-migrations
