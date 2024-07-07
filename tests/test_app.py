@@ -1,11 +1,12 @@
 import unittest
-from ml_services.app import create_app, configure_proxy
+from ml_services.app import create_app
 
 class TestConfig:
     TESTING = True
-    SERVER_NAME = 'testserver.local'
+    SERVER_NAME = 'fhir_server.local'
     SECRET_KEY = 'test_secret_key'
     PREFERRED_URL_SCHEME = 'http'
+    TORCH_MODEL_PATH = '/path/to/test/model'
 
 class TestIsaccMLServicesApp(unittest.TestCase):
     def setUp(self):
