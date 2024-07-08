@@ -24,7 +24,7 @@ def predict_score_route():
     if not model_path:
         # If model path is not set, return a benign response
         logging.info("Model path is not set, returning dummy success")
-        return jsonify({'score': 'dummy_success'}), 200
+        return jsonify({'response': 'model not set'}), 200
 
     if not os.path.exists(model_path):
         # If model path is set but not found, return an error
