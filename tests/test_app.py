@@ -20,5 +20,20 @@ class TestIsaccMLServicesApp(unittest.TestCase):
     def test_blueprints_registered(self):
         self.assertIn('base', self.app.blueprints)
 
+    def test_predict_score_route_success(self):
+        response = self.client.post('/predict_score', json={'message': 'test message'})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, {'score': 'success'})
+
+    def test_predict_score_route_invalid_input(self):
+        response = self.client.post('/predict_score', json={})
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json, {'error': 'Invalid input'})
+
+    def test_predict_score_route_missing_message(self):
+        response = self.client.post('/predict_score', json={'model_path': '/path/to/test/model'})
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json, {'error': 'Invalid input'})
+
 if __name__ == '__main__':
     unittest.main()
