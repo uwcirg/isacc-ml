@@ -3,7 +3,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 from ml_services.api import views
 
-def create_app(testing=False, cli=False):
+def create_app(testing=False):
     """Application factory, used to create application
     """
     app = Flask('ml_services')

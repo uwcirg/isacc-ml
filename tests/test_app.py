@@ -1,5 +1,5 @@
 import unittest
-import json
+
 from ml_services.app import create_app
 
 class TestConfig:
@@ -7,7 +7,7 @@ class TestConfig:
     SERVER_NAME = 'fhir_server.local'
     SECRET_KEY = 'test_secret_key'
     PREFERRED_URL_SCHEME = 'http'
-    TORCH_MODEL_PATH = '/path/to/invalid/model'  # Set an invalid path for testing
+    TORCH_MODEL_PATH = '/path/to/invalid/model'
 
 class TestIsaccMLServicesApp(unittest.TestCase):
     def setUp(self):
@@ -26,12 +26,19 @@ class TestIsaccMLServicesApp(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json, {'error': 'Invalid input'})
 
+    def test_predict_score_route_model_path_not_set(self):
+        # Remove the model path for this test
+        self.app.config['TORCH_MODEL_PATH'] = None
+        response = self.client.post('/predict_score', json={'message': 'test message'})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json, {'score': 'dummy_success'})
+
     def test_predict_score_route_invalid_model_path(self):
         # Set an invalid model path for this test
         self.app.config['TORCH_MODEL_PATH'] = '/invalid/path/to/model'
         response = self.client.post('/predict_score', json={'message': 'test message'})
         self.assertEqual(response.status_code, 500)
-        self.assertIn('error', response.json)
+        self.assertEqual(response.json, {'error': 'Model path not found'})
 
     def test_test_connection(self):
         response = self.client.get('/test_connection')
