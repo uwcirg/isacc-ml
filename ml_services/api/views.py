@@ -11,6 +11,7 @@ base_blueprint = Blueprint('base', __name__, cli_group=None)
 def root():
     return {'ok': True}
 
+
 @base_blueprint.route('/predict_score', methods=['POST'])
 def predict_score_route():
     logging.info("Received request to predict score")
@@ -23,10 +24,10 @@ def predict_score_route():
 
     if not model_path:
         # If model path is not set, return a benign response
-        logging.info("Model path is not set, returning dummy success")
-        return jsonify({'response': 'model not set'}), 200
+        logging.info("Model path is not set")
+        return jsonify({'response': 'Model path not set'}), 200
 
-    if not os.path.exists(model_path):
+    if not model_path or not os.path.exists(model_path):
         # If model path is set but not found, return an error
         logging.error(f"Model path {model_path} not found")
         return jsonify({'error': 'Model path not found'}), 500
@@ -38,6 +39,20 @@ def predict_score_route():
         logging.error(f"Error predicting score: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
+
+@base_blueprint.cli.command("test_connection")
+def test_connection_cli():
+    logging.info(f"Tested connection via command")
+    result = test_connection()
+    return result
+
+
 @base_blueprint.route('/test_connection', methods=['GET'])
+def test_connection_route():
+    logging.info(f"Tested connection via route")
+    result = test_connection()
+    return result
+
+
 def test_connection():
     return jsonify({'message': 'ok'}), 200
