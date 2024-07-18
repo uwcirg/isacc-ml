@@ -31,7 +31,7 @@ class TestIsaccMLServicesApp(unittest.TestCase):
         self.app.config['TORCH_MODEL_PATH'] = None
         response = self.client.post('/predict_score', json={'message': 'test message'})
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json, {'response': 'model not set'})
+        self.assertEqual(response.json, {'response': 'Model path not set'})
 
     def test_predict_score_route_invalid_model_path(self):
         # Set an invalid model path for this test
