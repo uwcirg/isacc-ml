@@ -17,7 +17,7 @@ def predict_score_route():
 
     if not data:
         # If no informaiton to process is provided, return an error
-        return jsonify({'response': 'invalid input'}), 400
+        return jsonify({'error': 'Invalid input'}), 400
 
     message = data.get('message')
     model_path = current_app.config.get('TORCH_MODEL_PATH')
