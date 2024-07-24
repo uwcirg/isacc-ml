@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify, current_app
-import logging
 import os
 
 from ml_services.api.ml_utils import predict_score
@@ -15,12 +14,16 @@ def root():
 @base_blueprint.route('/predict_score', methods=['POST'])
 def predict_score_route():
     data = request.get_json()
+
     if not data:
-        return jsonify({'response': 'invalid input'}), 400
+        # If no informaiton to process is provided, return an error
+        return jsonify({'error': 'Invalid input'}), 400
+
     message = data.get('message')
-    #model_path = current_app.config.get('TORCH_MODEL_PATH')
-    model_path = '/opt/app/config/models/model_for_isacc'
+    model_path = current_app.config.get('TORCH_MODEL_PATH')
+
     if not message:
+        # If no message to process is provided, return an error
         return jsonify({'error': 'Invalid input'}), 400
 
     if not model_path:
@@ -35,23 +38,4 @@ def predict_score_route():
         score = predict_score(message, model_path)
         return jsonify({'score': int(score)}), 200
     except Exception as e:
-        logging.error(f"Error predicting score: {str(e)}")
         return jsonify({'error': str(e)}), 500
-
-
-@base_blueprint.cli.command("test_connection")
-def test_connection_cli():
-    logging.info(f"Tested connection via command")
-    result = test_connection()
-    return result
-
-
-@base_blueprint.route('/test_connection', methods=['GET'])
-def test_connection_route():
-    logging.info(f"Tested connection via route")
-    result = test_connection()
-    return result
-
-
-def test_connection():
-    return jsonify({'message': 'ok'}), 200
