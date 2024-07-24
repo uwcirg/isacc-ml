@@ -5,8 +5,8 @@ This repository contains a Flask-based microservice that provides machine learni
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/ml-utility-service.git
-cd ml-utility-service
+git clone https://github.com/uwcirg/isacc-ml
+cd isacc-ml
 python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 pip install -r requirements.txt
@@ -21,18 +21,17 @@ flask run
 The service will be available at http://0.0.0.0:8000.
 
 ## Endpoint
-```POST /api/predict_score```
+```POST <ISACC_ML_HOST>/predict_score```
 Predicts the score for a given text message.
 
 ### Request:
-- Method: POST
-- Headers: Content-Type: application/json
-- Body:
-```json
-{
-    "message": "Your input message here",
-    "model_path": "path/to/your/model.pth"
-}
+```bash
+ISACC_ML_HOST=<ISACC ML address here>
+curl -X POST $ISACC_ML_HOST/predict_score \
+-H "Content-Type: application/json" \
+      -d '{
+           "message": "Your input message here"
+         }'
 ```
 
 ### Response:
