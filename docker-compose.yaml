@@ -1,0 +1,12 @@
+---
+version: "3.7"
+services:
+  web:
+    image: "ghcr.io/uwcirg/ml-services:${DOCKER_IMAGE_TAG:-main}"
+    build:
+      context: .
+    ports:
+      # allow override of published port
+      - ${P_PORT:-5000}:5000
+    env_file:
+      - ml_services.env
