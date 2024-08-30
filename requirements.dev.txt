@@ -126,6 +126,8 @@ pyyaml==6.0.2
     # via
     #   huggingface-hub
     #   transformers
+regex==2024.7.24
+    # via transformers
 requests==2.32.3
     # via
     #   huggingface-hub
@@ -136,6 +138,8 @@ requests-cache==1.2.1
     # via ml_services (setup.cfg)
 requests-mock==1.12.1
     # via ml_services (setup.cfg)
+safetensors==0.4.4
+    # via transformers
 scipy==1.13.1
     # via ml_services (setup.cfg)
 six==1.16.0
@@ -144,6 +148,8 @@ six==1.16.0
     #   url-normalize
 sympy==1.13.2
     # via torch
+tokenizers==0.13.3
+    # via transformers
 tomli==2.0.1
     # via pytest
 torch==2.4.0
