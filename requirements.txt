@@ -129,7 +129,7 @@ six==1.16.0
     #   url-normalize
 sympy==1.13.2
     # via torch
-tokenizers==0.19.1
+tokenizers==0.13.3
     # via transformers
 torch==2.4.0
     # via ml_services (setup.cfg)
