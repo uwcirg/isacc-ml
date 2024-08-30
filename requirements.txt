@@ -129,7 +129,7 @@ six==1.16.0
     #   url-normalize
 sympy==1.13.2
     # via torch
-tokenizers==0.19.1
+tokenizers==0.15.2
     # via transformers
 torch==2.4.0
     # via ml_services (setup.cfg)
@@ -137,7 +137,8 @@ tqdm==4.66.5
     # via
     #   huggingface-hub
     #   transformers
-transformers==4.44.1
+# Pinned because of compatability issues, https://github.com/huggingface/transformers/issues/30965
+transformers==4.37.0
     # via ml_services (setup.cfg)
 triton==3.0.0
     # via torch
